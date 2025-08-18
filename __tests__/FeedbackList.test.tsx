@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import FeedbackList from "../components/ui/FeedbackList";
 
+/* Unit Test */
 describe("test on FeedbackList to fetch data from local storage", () => {
   beforeEach(() => {
     const mockFeedbacks = [
@@ -31,7 +32,10 @@ describe("test on FeedbackList to fetch data from local storage", () => {
     expect(screen.getByText(/Test Subject/)).toBeInTheDocument();
     expect(screen.getByText(/Awesome app/)).toBeInTheDocument();
   });
+});
 
+/* Integration Tests */
+describe("Test local storage remove Item button ", () => {
   test("clicking Erase Storage emptys local storage", () => {
     render(<FeedbackList />);
     const button = screen.getByRole("button", { name: /Erase Storage/i });
