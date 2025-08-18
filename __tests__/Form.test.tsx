@@ -20,7 +20,6 @@ let mockSetFeedbackList: jest.Mock;
 const mockLocalStorage = {
   getItem: jest.fn(),
   setItem: jest.fn(),
-  removeItem: jest.fn(),
   clear: jest.fn(),
 };
 Object.defineProperty(window, "localStorage", {
@@ -65,7 +64,7 @@ describe("FormBody Component", () => {
     expect(screen.getByPlaceholderText("Name")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Email")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Subject")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("Your message")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Your content")).toBeInTheDocument();
     expect(screen.getByLabelText(/category/i)).toBeInTheDocument();
     expect(screen.getByText("Rating")).toBeInTheDocument();
   });
@@ -110,12 +109,12 @@ describe("form submission, required input, form reset", () => {
     const nameInput = screen.getByPlaceholderText("Name");
     const emailInput = screen.getByPlaceholderText("Email");
     const subjectInput = screen.getByPlaceholderText("Subject");
-    const messageInput = screen.getByPlaceholderText("Your message");
+    const contentInput = screen.getByPlaceholderText("Your content");
 
     await user.type(nameInput, "May");
     await user.type(emailInput, "may@gmail.com");
     await user.type(subjectInput, "Subject");
-    await user.type(messageInput, "Writing review");
+    await user.type(contentInput, "Writing review");
 
     const starButtons = screen
       .getAllByRole("button")
@@ -133,7 +132,7 @@ describe("form submission, required input, form reset", () => {
           rating: 5,
           category: "General",
           subject: "Subject",
-          message: "Writing review",
+          content: "Writing review",
           id: "id uuid",
           timestamp: new Date().toLocaleString(),
         },
@@ -164,7 +163,7 @@ describe("form submission, required input, form reset", () => {
           rating: 0,
           category: "General",
           subject: "",
-          message: "",
+          content: "",
         }),
       ]);
     });
@@ -182,12 +181,12 @@ describe("form submission, required input, form reset", () => {
     const nameInput = screen.getByPlaceholderText("Name");
     const emailInput = screen.getByPlaceholderText("Email");
     const subjectInput = screen.getByPlaceholderText("Subject");
-    const messageInput = screen.getByPlaceholderText("Your message");
+    const contentInput = screen.getByPlaceholderText("Your content");
 
     await user.type(nameInput, "May");
     await user.type(emailInput, "may@gmail.com");
     await user.type(subjectInput, "Subject");
-    await user.type(messageInput, "Writing review");
+    await user.type(contentInput, "Writing review");
 
     const submitButton = screen.getByRole("button", { name: /submit/i });
     await user.click(submitButton);
@@ -196,7 +195,7 @@ describe("form submission, required input, form reset", () => {
       expect(nameInput).toHaveValue("");
       expect(emailInput).toHaveValue("");
       expect(subjectInput).toHaveValue("");
-      expect(messageInput).toHaveValue("");
+      expect(contentInput).toHaveValue("");
       expect(screen.getByDisplayValue("General")).toBeInTheDocument();
     });
   });
