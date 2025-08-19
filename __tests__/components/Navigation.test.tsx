@@ -1,14 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import Navigation from "../components/ui/Navigation";
+import Navigation from "../../components/ui/Navigation";
 
-describe("navigation bar and button redirect test", () => {
-  beforeEach(() => {
-    render(<Navigation />);
-  });
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
+beforeEach(() => {
+  render(<Navigation />);
+});
 
+/*✅ UNIT TESTS ✅*/
+describe("Navigation bar - Unit Tests", () => {
   test("render navigation bar", () => {
     const navbar = screen.getByTestId("navigation");
     expect(navbar).toBeInTheDocument();
@@ -37,6 +35,11 @@ describe("navigation bar and button redirect test", () => {
       "href",
       "/feedbacks"
     );
+  });
+
+  test("renders the logo with correct src", () => {
+    const logo = screen.getByAltText(/logo/i) as HTMLImageElement;
+    expect(logo).toBeInTheDocument();
   });
 
   test("render logo with alt text", () => {
