@@ -16,9 +16,6 @@ jest.mock("uuid", () => ({
   v4: jest.fn(() => "id uuid"),
 }));
 
-const mockToLocaleString = jest.fn(() => "1/1/2024, 12:00:00 PM");
-Date.prototype.toLocaleString = mockToLocaleString;
-
 /* Mock Local storage */
 const mockLocalStorage = {
   getItem: jest.fn(),
