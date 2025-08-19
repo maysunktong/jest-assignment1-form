@@ -37,11 +37,6 @@ describe("Navigation bar - Unit Tests", () => {
     );
   });
 
-  test("renders the logo with correct src", () => {
-    const logo = screen.getByAltText(/logo/i) as HTMLImageElement;
-    expect(logo).toBeInTheDocument();
-  });
-
   test("render logo with alt text", () => {
     const image = screen.getByRole("img", { name: /logo/i });
     expect(image).toBeInTheDocument();
