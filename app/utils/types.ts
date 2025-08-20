@@ -5,6 +5,7 @@ export type FeedbackItems = {
     categiry: string;
     subject: string;
     cntent: string;
+    timestamp: string;
 };
 
 export type Ctx = {
