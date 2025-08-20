@@ -1,4 +1,4 @@
-export type FeedbackItems = {
+export type FeedbackItem = {
     id: string;
     name: string;
     email: string;
@@ -8,6 +8,6 @@ export type FeedbackItems = {
 };
 
 export type Ctx = {
-    feedbackList: FeedbackItems[];
-    setFeedbackList: React.Dispatch<React.SetStateAction<FeedbackItems[]>>;
+    feedbackList: FeedbackItem[];
+    setFeedbackList: React.Dispatch<React.SetStateAction<FeedbackItem[]>>;
 };

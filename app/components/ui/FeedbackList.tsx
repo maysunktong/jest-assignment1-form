@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useFeedbackContext, FeedbackItems } from "@/app/utils/types";
+import { useFeedbackContext, FeedbackItem } from "@/app/context/FeedbackProvider";
 
 export default function FeedbackList() {
   const { feedbackList, setFeedbackList } = useFeedbackContext();
-  const [loaded, setLoaded] = useState<FeedbackItems[]>([]);
+  const [loaded, setLoaded] = useState<FeedbackItem[]>([]);
  
   useEffect(() => {
     try {
         const raw = localStorage.getItem("feedbacks");
-        const data: FeedbackItems[] = raw ? JSON.parse(raw) : [];
+        const data: FeedbackItem[] = raw ? JSON.parse(raw) : [];
         setLoaded(data.length ? data : feedbackList);
     } catch {
         setLoaded(feedbackList);
