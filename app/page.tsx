@@ -1,7 +1,7 @@
 'use client';
 import link from 'next/link';
-import navigation from 'components/Navigation';
-import { FeedbackProvider } from '../context/FeedbackContext';
+import navigation from '@/app/components/ui/Navigation';
+import { FeedbackProvider } from '@/app/context/FeedbackProvider';
 
 export default function Home() {
   return (
