@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useFeedbackContext, FeedbackItem } from "@/app/context/FeedbackProvider";
+import { useFeedbackContext } from "@/app/context/FeedbackProvider";
+import { FeedbackItem } from "@/app/utils/types";
 
 export default function FeedbackList() {
   const { feedbackList, setFeedbackList } = useFeedbackContext();
