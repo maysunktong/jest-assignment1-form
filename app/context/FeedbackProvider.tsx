@@ -2,7 +2,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { FeedbackItem, Ctx } from "@/app/utils/types";
 
-const FeedbackContext = createContext<Ctx | null>(null);
+const defaultCtx: Ctx = {
+  feedbackList: [],
+  setFeedbackList: () => {},
+};
+
+const FeedbackContext = createContext<Ctx>(defaultCtx);
 
 export function FeedbackProvider({ children }: { children: React.ReactNode }) {
   const [feedbackList, setFeedbackList] = useState<FeedbackItem[]>([]);
@@ -16,9 +21,7 @@ export function FeedbackProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
-      if (feedbackList.length) {
-        localStorage.setItem("feedbacks", JSON.stringify(feedbackList));
-      }
+      localStorage.setItem("feedbacks", JSON.stringify(feedbackList));
     } catch {}
   }, [feedbackList]);
 
@@ -30,7 +33,5 @@ export function FeedbackProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useFeedbackContext() {
-  const ctx = useContext(FeedbackContext);
-  if (!ctx) throw new Error("useFeedbackContext must be used within provider");
-  return ctx;
+  return useContext(FeedbackContext);
 }

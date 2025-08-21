@@ -10,8 +10,8 @@ export default function FeedbackList() {
   useEffect(() => {
     try {
       const raw = localStorage.getItem("feedbacks");
-      if (raw) setLoaded(JSON.parse(raw));
-      else setLoaded(feedbackList ?? []);
+      const data: FeedbackItem[] = raw ? JSON.parse(raw) : [];
+      setLoaded(data.length ? data : (feedbackList ?? []));
     } catch {
       setLoaded(feedbackList ?? []);
     }
@@ -22,20 +22,22 @@ export default function FeedbackList() {
       localStorage.removeItem("feedbacks");
     } catch {}
     setLoaded([]);
-    setFeedbackList([]); // tom array, inte updater-funktion
+    setFeedbackList([]);
   }
 
   return (
     <section>
-      <button onClick={erase}>Erase Storage</button>
-      <ul>
-        {loaded.map(f => (
-          <li key={f.id}>
-            <h3>{f.subject}</h3>
-            <p>{f.content}</p>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
+    <button onClick={erase}>Erase Storage</button>
+    <ul>
+      {loaded.map((f) => (
+        <li key={f.id}>
+          <h3>{f.subject}</h3>
+          <p>{f.content}</p>
+          <p>{f.name}</p>
+          <p>{f.email}</p>
+          <p>{f.category}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+  )}
