@@ -2,7 +2,7 @@
 import { FormEvent, useMemo, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { useFeedbackContext } from "@/app/context/FeedbackProvider";
-import {FeedbackItems} from "@/app/utils/types"
+import {FeedbackItem} from "@/app/utils/types"
 
 const CATEGORY_OPTIONS = [
   { value: "general", label: "General" },
@@ -15,7 +15,7 @@ export default function FormBody() {
   const { setFeedbackList } = useFeedbackContext();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [category, setCategory] = useState("general"); // default enligt test
+  const [category, setCategory] = useState("general");
   const [subject, setSubject] = useState("");
   const [content, setContent] = useState("");
 
@@ -31,7 +31,7 @@ export default function FormBody() {
       id: uuid(),
       name,
       email,
-      category: categoryLabel, // OBS! Versal label enligt test ("General")
+      category: categoryLabel,
       subject,
       content,
       timestamp: new Date().toLocaleString(),
