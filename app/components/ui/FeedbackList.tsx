@@ -1,34 +1,38 @@
 "use client";
-import { useEffect, useState } from "react";
-import { useFeedbackContext } from "@/app/context/FeedbackProvider";
+
+import { useEffect, useState, useContext } from "react";
+import { FeedbackContext } from "@/app/context/FeedbackProvider";
 import { FeedbackItem } from "@/app/utils/types";
 
 export default function FeedbackList() {
-  const { feedbackList, setFeedbackList } = useFeedbackContext();
+
+  const context = useContext(FeedbackContext);
   const [loaded, setLoaded] = useState<FeedbackItem[]>([]);
  
   useEffect(() => {
     try {
         const raw = localStorage.getItem("feedbacks");
         const data: FeedbackItem[] = raw ? JSON.parse(raw) : [];
-        setLoaded(data.length ? data : feedbackList);
+        setLoaded(data.length ? data : (context?.feedbackList || []));
     } catch {
-        setLoaded(feedbackList);
-    }  
-  }, ([ feedbackList ]));
+        setLoaded(context?.feedbackList  || []);
+    }
+  }, [context?.feedbackList]); 
 
-    function erase() {
+  function erase() {
     try {
       localStorage.removeItem("feedbacks");
     } catch {}
-    setFeedbackList([]);
+    if (context?.setFeedbackList) {
+      context.setFeedbackList([]);
+    }
     setLoaded([]);
   }
 
   return (
     <section>
         <button onClick={erase}>Erase Storage</button>
-        <ul className= "flex flex-col gap-3">
+        <ul className="flex flex-col gap-3">
         {loaded.map(item => (
           <li key={item.id} className="border p-3 rounded">
             <div><strong>{item.name}</strong> — {item.email}</div>
@@ -41,4 +45,3 @@ export default function FeedbackList() {
     </section>
   );
 }
-  
