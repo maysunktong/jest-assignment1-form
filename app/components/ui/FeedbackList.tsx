@@ -1,44 +1,38 @@
 "use client";
-
-import { useEffect, useState, useContext } from "react";
-import { FeedbackContext } from "@/app/context/FeedbackProvider";
-import { FeedbackItem } from "@/app/utils/types";
+import { useEffect, useState } from "react";
+import { useFeedbackContext } from "@/app/context/FeedbackProvider";
+import type { FeedbackItem } from "@/app/utils/types";
 
 export default function FeedbackList() {
-
-  const context = useContext(FeedbackContext);
+  const { feedbackList, setFeedbackList } = useFeedbackContext();
   const [loaded, setLoaded] = useState<FeedbackItem[]>([]);
- 
+
   useEffect(() => {
     try {
-        const raw = localStorage.getItem("feedbacks");
-        const data: FeedbackItem[] = raw ? JSON.parse(raw) : [];
-        setLoaded(data.length ? data : (context?.feedbackList || []));
+      const raw = localStorage.getItem("feedbacks");
+      if (raw) setLoaded(JSON.parse(raw));
+      else setLoaded(feedbackList ?? []);
     } catch {
-        setLoaded(context?.feedbackList  || []);
+      setLoaded(feedbackList ?? []);
     }
-  }, [context?.feedbackList]); 
+  }, [feedbackList]);
 
   function erase() {
     try {
       localStorage.removeItem("feedbacks");
     } catch {}
-    if (context?.setFeedbackList) {
-      context.setFeedbackList([]);
-    }
     setLoaded([]);
+    setFeedbackList([]); // tom array, inte updater-funktion
   }
 
   return (
     <section>
-        <button onClick={erase}>Erase Storage</button>
-        <ul className="flex flex-col gap-3">
-        {loaded.map(item => (
-          <li key={item.id} className="border p-3 rounded">
-            <div><strong>{item.name}</strong> — {item.email}</div>
-            <div>{item.category}</div>
-            <div>{item.subject}</div>
-            <p>{item.content}</p>
+      <button onClick={erase}>Erase Storage</button>
+      <ul>
+        {loaded.map(f => (
+          <li key={f.id}>
+            <h3>{f.subject}</h3>
+            <p>{f.content}</p>
           </li>
         ))}
       </ul>

@@ -2,7 +2,7 @@
 import { FormEvent, useMemo, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { useFeedbackContext } from "@/app/context/FeedbackProvider";
-import {FeedbackItem} from "@/app/utils/types"
+import type { FeedbackItem } from "@/app/utils/types";
 
 const CATEGORY_OPTIONS = [
   { value: "general", label: "General" },
@@ -12,7 +12,7 @@ const CATEGORY_OPTIONS = [
 ];
 
 export default function FormBody() {
-  const { setFeedbackList } = useFeedbackContext();
+  const { feedbackList, setFeedbackList } = useFeedbackContext();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [category, setCategory] = useState("general");
@@ -27,7 +27,7 @@ export default function FormBody() {
   function onSubmit(e: FormEvent) {
     e.preventDefault();
 
-    const item = {
+    const item: FeedbackItem = {
       id: uuid(),
       name,
       email,
@@ -37,19 +37,13 @@ export default function FormBody() {
       timestamp: new Date().toLocaleString(),
     };
 
-    setFeedbackList(prev => {
-      const next = [item, ...prev];
-      try {
-        localStorage.setItem("feedbacks", JSON.stringify(next));
-      } catch {}
-      return next;
-    });
+    const next = [item, ...(feedbackList ?? [])];
+    try {
+      localStorage.setItem("feedbacks", JSON.stringify(next));
+    } catch {}
+    setFeedbackList(next); // ← array, matchar testen
 
-    setName("");
-    setEmail("");
-    setSubject("");
-    setContent("");
-    setCategory("general");
+    setName(""); setEmail(""); setSubject(""); setContent(""); setCategory("general");
   }
 
   return (
