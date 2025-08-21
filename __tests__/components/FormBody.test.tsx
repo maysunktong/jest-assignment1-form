@@ -1,11 +1,11 @@
 import { render, screen, waitFor, within } from "@testing-library/react";
-import { useFeedbackContext } from "../../context/FeedbackProvider";
-import FormBody from "../../components/ui/FormBody";
+import { useFeedbackContext } from "../../app/context/FeedbackProvider";
+import FormBody from "../../app/components/ui/FormBody";
 import userEvent from "@testing-library/user-event";
 
 /* ------------------------------------------------------- */
 /* Mock useFeedbackContext and setFeedBackList */
-jest.mock("../../context/FeedbackProvider", () => ({
+jest.mock("../../app/context/FeedbackProvider", () => ({
   useFeedbackContext: jest.fn(),
 }));
 
