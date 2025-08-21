@@ -2,9 +2,9 @@ export type FeedbackItem = {
     id: string;
     name: string;
     email: string;
-    categiry: string;
+    category: string;
     subject: string;
-    cntent: string;
+    content: string;
 };
 
 export type Ctx = {
