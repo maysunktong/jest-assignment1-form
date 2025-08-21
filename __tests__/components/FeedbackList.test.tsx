@@ -1,5 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import FeedbackList from "@/app/utils/types";
+import FeedbackList from "@/app/components/ui/FeedbackList";
+
+
 
 beforeEach(() => {
   const mockFeedbacks = [

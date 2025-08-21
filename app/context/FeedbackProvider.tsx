@@ -1,12 +1,12 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import type { FeedbackItems, Ctx } from "@/app/utils/types";
+import type { FeedbackItem, Ctx } from "@/app/utils/types";
 
 const FeedbackContext = createContext<Ctx | null>(null);
 
 export function FeedbackProvider({ children }: { children: React.ReactNode }) {
-  const [feedbackList, setFeedbackList] = useState<FeedbackItems[]>([]);
+  const [feedbackList, setFeedbackList] = useState<FeedbackItem[]>([]);
 
   useEffect(() => {
     try {

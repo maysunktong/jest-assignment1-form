@@ -1,14 +1,16 @@
-export type FeedbackItems = {
+export type FeedbackItem = {
     id: string;
     name: string;
     email: string;
-    categiry: string;
+    category: string;
     subject: string;
-    cntent: string;
+    content: string;
     timestamp: string;
+    
+
 };
 
 export type Ctx = {
-    feedbackList: FeedbackItems[];
-    setFeedbackList: React.Dispatch<React.SetStateAction<FeedbackItems[]>>;
+    feedbackList: FeedbackItem[];
+    setFeedbackList: React.Dispatch<React.SetStateAction<FeedbackItem[]>>;
 };
