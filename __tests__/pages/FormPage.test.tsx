@@ -1,6 +1,6 @@
 import { screen, render } from "@testing-library/react";
-import FormPage from "../../app/form/page";
-import { useFeedbackContext } from "../../context/FeedbackProvider";
+import FormPage from "@/app/form/page";
+import { useFeedbackContext } from "@/app/context/FeedbackProvider";
 
 /* ------------------------------------------------------- */
 /* Mock useFeedbackContext and setFeedBackList */
