@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { FeedbackItem, Ctx } from "@/app/utils/types";
 
-const FeedbackContext = createContext<Ctx | null>(null);
+export const FeedbackContext = createContext<Ctx | null>(null);  
 
 export function FeedbackProvider({ children }: { children: React.ReactNode }) {
   const [feedbackList, setFeedbackList] = useState<FeedbackItem[]>([]);
