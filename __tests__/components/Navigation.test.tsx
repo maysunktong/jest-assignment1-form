@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Navigation from "../../components/ui/Navigation";
+import Navigation from "@/app/components/ui/Navigation";
 
 beforeEach(() => {
   render(<Navigation />);

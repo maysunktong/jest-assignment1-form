@@ -1,6 +1,7 @@
 import { screen, render } from "@testing-library/react";
 import FeedbackPage from "../../app/feedbacks/page";
 
+
 beforeEach(() => {
   render(<FeedbackPage />);
 });
