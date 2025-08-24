@@ -9,7 +9,7 @@ export default function Navigation() {
         <div className="flex flex-wrap items-center justify-between gap-2">
           <Link href="/" aria-label="logo" className="shrink-0">
             <Image src="/logoform.png" alt="logo" width={80} height={80}
-              className="h-8 w-auto sm:h-10 md:h-12" sizes="(max-width: 640px) 2rem, (max-width: 768px) 2.5rem, 3rem" 
+              className="h-8 w-auto sm:h-10 md:h-12 hidden sm:block" sizes="(max-width: 640px) 2rem, (max-width: 768px) 2.5rem, 3rem" 
               priority/>
           </Link>
           <div className="flex w-full sm:w-auto flex-col sm:flex-row items-center justify-center sm:justify-end gap-3 sm:gap-4 md:gap-6">

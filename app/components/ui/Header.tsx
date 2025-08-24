@@ -11,7 +11,7 @@ export default function Header() {
   return (
    <header
   data-testid="header"
-  className="w-full bg-[#e1ccbe] font-bold text-white p-4 flex items-center justify-between">
+  className="relative w-full bg-[#e1ccbe] font-bold text-white p-4 flex items-center justify-between">
   <div className="sm:hidden">
     <Link href="/">
     <Image
@@ -30,12 +30,14 @@ export default function Header() {
   </div>
 
   <div className="sm:hidden">
-    
-    <button className="sm:hidden p-2 rounded focus:outline-none focus-visible:ring">
-    <Hamburger toggled={isOpen} toggle={setOpen} />
-    </button>
-    
-  </div>
+        <Hamburger toggled={isOpen} toggle={setOpen} />
+
+        {isOpen && (
+          <div className="absolute top-full left-0 w-full bg-[#e1ccbe] p-4">
+            <Navigation />
+          </div>
+        )}
+      </div>
 </header>
   );
 }
