@@ -9,9 +9,7 @@ import Link from "next/link";
 export default function Header() {
   const [isOpen, setOpen] = useState(false)
   return (
-   <header
-  data-testid="header"
-  className="relative w-full bg-[#e1ccbe] font-bold text-white p-4 flex items-center justify-between">
+   <header data-testid="header" className="relative w-full bg-[#e1ccbe] font-bold text-white p-4 flex items-center">
   <div className="sm:hidden">
     <Link href="/">
     <Image
@@ -25,11 +23,11 @@ export default function Header() {
       </Link>
   </div>
 
-  <div className="hidden sm:block">
+  <div className="hidden sm:block flex justify-end w-full">
     <Navigation />
   </div>
 
-  <div className="sm:hidden">
+  <div className="sm:hidden flex justify-end w-full">
         <Hamburger toggled={isOpen} toggle={setOpen} />
 
         {isOpen && (
