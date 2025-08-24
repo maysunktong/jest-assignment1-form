@@ -9,10 +9,12 @@ const SafeProvider =
 export default function FormPage() {
   return (
     <SafeProvider>
-      <section data-testid="form-page-container" className="p-10 flex flex-col gap-6">
+      <div className="flex w-full min-h-screen items-center justify-center">
+      <section data-testid="form-page-container" className="w-full max-w-lg p-10 flex flex-col gap-6">
         <h1>Product Feedback Form</h1>
         <FormBody />
       </section>
+        </div>
     </SafeProvider>
   );
 }
